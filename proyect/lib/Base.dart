@@ -24,13 +24,13 @@ class Base{
 			 onCreate: (db,version){
 				 //Solo se ejecuta la primera vez
 				 //o cuando la versión cambie de
-				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY, nombre TEXT, password TEXT)");
+				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, password TEXT)");
 			 }
 		);
 		return dataBase;
 	}
 
-	Future<int> insertaAspirante(Usuario a) async{
+	Future<int> insertaUsuario(Usuario a) async{
 		var db = await base;
 
 		var result = await db.insert("Usuario", a.toJson());
@@ -38,13 +38,19 @@ class Base{
 		return result;
 	}
 
-	Future<int> insertaAspirante2(Usuario a) async{
+	Future<int> insertaUsuario2(Usuario a) async{
 		var db = await base;
 
-		var result=await db.rawInsert("INSERT INTO Aspirante(id,nombre) VALUES(${a.id},'${a.usuario}','${a.password}')");
+		var result=await db.rawInsert("INSERT INTO Usuario(usuario,password) VALUES('${a.usuario}','${a.password}')");
 
 		return result;
 
+	}
+
+	Future<int> deleteUsuario(int id) async {
+		final db = await base;
+
+		db.delete("Usuario", where: "id = ?", whereArgs: [id]);
 	}
 //FALTAN LOS METODOS DE
 //ELIMINAR
