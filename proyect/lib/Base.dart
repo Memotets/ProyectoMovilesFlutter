@@ -29,7 +29,7 @@ class Base{
 		);
 		return dataBase;
 	}
-
+//Insert
 	Future<int> insertaUsuario(Usuario a) async{
 		var db = await base;
 
@@ -46,14 +46,32 @@ class Base{
 		return result;
 
 	}
-
+//Delete
 	Future<int> deleteUsuario(int id) async {
 		final db = await base;
 
-		db.delete("Usuario", where: "id = ?", whereArgs: [id]);
+		var res = db.delete("Usuario", where: "id = ?", whereArgs: [id]);
+
+		return res;
 	}
-//FALTAN LOS METODOS DE
-//ELIMINAR
+//Get User by Id
+	Future<Usuario>getUser(String user) async {
+		final db = await base;
+		var res =await  db.query("Client", where: "user = ?", whereArgs: [user]);
+		return res.isNotEmpty ? Usuario.fromJson(res.first) : Null ;
+	}
+
+	//Validate User on login
+	Future<Usuario> getLogin(String user, String password) async {
+		var db = await base;
+
+		var res = await db.rawQuery("SELECT * FROM user WHERE user = '$user' and password = '$password'");
+
+		if (res.length > 0) {
+			return new Usuario.fromJson(res.first);
+		}return null;
+	}
+
+
 //ACTUALIZAR
-//LISTAR
 }
