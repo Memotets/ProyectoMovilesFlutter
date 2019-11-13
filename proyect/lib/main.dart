@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:proyect/Base.dart';
+import 'package:proyect/menu.dart';
 import 'package:proyect/models/FormCard.dart';
+import 'package:proyect/models/Usuario.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,7 +32,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  
+  FormCard login = new FormCard();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       
-      body: Container(
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           vertical: 10,
           horizontal: 18
@@ -54,13 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
-            FormCard(),
+            login.build(context),
             Center(
               child: RaisedButton(
                 child: Text('Ingresar'),
                 textColor: Colors.white,
                 color: Colors.blue,
-                onPressed: (){},
+                onPressed: ()=> validarLogin(context,login.user,login.pw),
               ),
             )
             
@@ -68,31 +74,45 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+
+        onPressed: (){
+          agregarAspirante(context);
+        },
         
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  void _incrementCounter(){
-
+  void validarLogin(BuildContext context,String user, String password ){
+    Base base = new Base();
+    Future<Usuario> usuario = base.getLogin(user, password);
+    var alertDialog = AlertDialog(
+      title: Text("Error al ingresar"),
+      content: Text("Verificar usuario y/o contraseña"),
+    );
+    if(usuario == null){
+      showDialog(
+        context: context,
+        builder: (BuildContext conext)=> alertDialog
+      );
+    }
+    else{
+      final route = MaterialPageRoute(
+      builder: (context) => Menu());
+      Navigator.pop(context);
+      Navigator.push(context, route);
+      
+    }
+    
   }
 
-  void _agregarAspirante(){
-
+  void agregarAspirante(BuildContext context){
+    final route = MaterialPageRoute(
+      builder: (context) => Menu());
+      Navigator.push(context, route);
   }
 
-  void _sincronizar(){
-
-  }
-
-  void _noSincronizados(){
-
-  }
-
-  void _cerrarSesion(){
-
-  }
+  
 
 }
