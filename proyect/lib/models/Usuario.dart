@@ -5,13 +5,13 @@ class Usuario{
 	Usuario({this.usuario,this.password});
 
 	Map<String, dynamic> toJson()=>{
-		"usuario":usuario,
-		"password":password
+		"nombre":usuario,
+		"contra":password
 	};
 
 	factory Usuario.fromJson(Map<String, dynamic> data)=> Usuario(
-		 usuario:data["user"],
-		 password:data["password"]
+		 usuario:data["nombre"],
+		 password:data["contra"]
 	);
 
 }

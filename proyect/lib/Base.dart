@@ -19,12 +19,12 @@ class Base{
 		//Uniendo el ruta + nombre_de_la_base_de_datos
 		var dataBase = await openDatabase(
 			 rutaCompleta,
-			 version: 1,
+			 version: 101,
 			 onOpen: (db){},
 			 onCreate: (db,version){
 				 //Solo se ejecuta la primera vez
 				 //o cuando la versión cambie de
-				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, password TEXT)");
+				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, contra TEXT)");
 			 }
 		);
 		return dataBase;
@@ -41,7 +41,7 @@ class Base{
 	Future<int> insertaUsuario2(Usuario a) async{
 		var db = await base;
 
-		var result=await db.rawInsert("INSERT INTO Usuario(usuario,password) VALUES('${a.usuario}','${a.password}')");
+		var result=await db.rawInsert("INSERT INTO Usuario(nombre,contra) VALUES('${a.usuario}','${a.password}')");
 
 		return result;
 
@@ -57,19 +57,25 @@ class Base{
 //Get User by Id
 	Future<Usuario>getUser(String user) async {
 		final db = await base;
-		var res =await  db.query("Client", where: "user = ?", whereArgs: [user]);
-		return res.isNotEmpty ? Usuario.fromJson(res.first) : Null ;
+		var res =await  db.query("Usuario", where: "nombre = ?", whereArgs: [user]);
+		if (res.length > 0) {
+			return new Usuario.fromJson(res.first);
+		}
+		print("Error Login");
+		return null;
 	}
 
 	//Validate User on login
 	Future<Usuario> getLogin(String user, String password) async {
 		var db = await base;
 
-		var res = await db.rawQuery("SELECT * FROM user WHERE user = '$user' and password = '$password'");
+		var res = await db.rawQuery("SELECT * FROM Usuario WHERE nombre = '$user' and contra = '$password'");
 
 		if (res.length > 0) {
 			return new Usuario.fromJson(res.first);
-		}return null;
+		}
+		print("Error Login");
+		return null;
 	}
 
 

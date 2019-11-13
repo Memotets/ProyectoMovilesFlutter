@@ -3,7 +3,8 @@ import 'package:proyect/Base.dart';
 import 'package:proyect/menu.dart';
 import 'package:proyect/models/FormCard.dart';
 import 'package:proyect/models/Usuario.dart';
-//import 'package:fluttertoast/fluttertoast.dart';
+import 'package:proyect/registro.dart';
+import 'models/Usuario.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   
   FormCard login = new FormCard();
+  Base base = new Base();
   
 
   @override
@@ -66,7 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('Ingresar'),
                 textColor: Colors.white,
                 color: Colors.blue,
-                onPressed: ()=> validarLogin(context,login.user,login.pw),
+                onPressed: (){
+                	print(login.user);
+                  print(login.pw);
+                	validarLogin(context,login.user,login.pw);},
               ),
             )
             
@@ -76,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
 
         onPressed: (){
-          agregarAspirante(context);
+          agregarAspirante();
         },
         
         child: Icon(Icons.add),
@@ -84,13 +89,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void validarLogin(BuildContext context,String user, String password ){
-    Base base = new Base();
-    Future<Usuario> usuario = base.getLogin(user, password);
+  void validarLogin(BuildContext context,String user, String password ) async{
+    Usuario usuario = await base.getLogin(user, password);
     var alertDialog = AlertDialog(
       title: Text("Error al ingresar"),
       content: Text("Verificar usuario y/o contraseña"),
     );
+
     if(usuario == null){
       showDialog(
         context: context,
@@ -106,11 +111,17 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     
   }
+  void agregarAspirante()async{
 
-  void agregarAspirante(BuildContext context){
-    final route = MaterialPageRoute(
-      builder: (context) => Menu());
-      Navigator.push(context, route);
+	  final route = MaterialPageRoute(
+		   builder: (context) => Registro(this.base));
+	  Navigator.push(context, route);
+  }
+
+  void pantalla(BuildContext context){
+	  final route = MaterialPageRoute(
+		   builder: (context) => Menu());
+	  Navigator.push(context, route);
   }
 
   

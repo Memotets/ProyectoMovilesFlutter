@@ -19,8 +19,9 @@ class FormCard extends StatelessWidget {
             hintText: "Usuario" 
           ),
           controller: _userController,
-          onEditingComplete: (){
-            user=_userController.text;
+          onChanged: (user){
+            this.user=_userController.text;
+            print(this.user);
           },
         ),
         Divider(),
@@ -31,8 +32,9 @@ class FormCard extends StatelessWidget {
             hintText: "Contraseña"
           ),
           controller: _pwController,
-          onEditingComplete: (){
-            pw = _pwController.text;
+          onChanged: (pw){
+            this.pw = _pwController.text;
+            print(this.pw);
           },
 
         )
