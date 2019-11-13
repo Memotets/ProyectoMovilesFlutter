@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Proyecto Final',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -34,6 +35,56 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      drawer:  Drawer(
+        child: ListView(
+          children: <Widget>[
+              UserAccountsDrawerHeader(
+                currentAccountPicture: CircleAvatar(
+                  child: Icon(Icons.person, color: Colors.white, size: 50.0),
+                ),
+                accountName: Text('John Doe'),
+                accountEmail: Text('contact@example.com'),
+              ),
+
+              ListTile(
+                title: Text('Agregar aspirante'),
+                leading: Icon(Icons.favorite, color: Colors.grey,),
+                onTap: (){
+               
+                _agregarAspirante();
+                }
+                               
+                 
+              ),
+              ListTile(
+                title: Text('Sincronizar'),
+                leading: Icon(Icons.bookmark, color: Colors.grey,),
+                onTap: (){
+               
+                _sincronizar();
+                }
+              ),
+
+              ListTile(
+                title: Text('No sincronizados'),
+                leading: Icon(Icons.camera_alt, color: Colors.grey,),
+               onTap: (){
+               
+                _noSincronizados();
+                }
+              ),
+
+              ListTile(
+                title: Text('Cerrar sesión'),
+                leading: Icon(Icons.map, color: Colors.grey,),
+                onTap: (){
+               
+                _cerrarSesion();
+                }
+              ),
+          ],
+          ),
+      ),
       body: Center(
       ),
       floatingActionButton: FloatingActionButton(
@@ -43,4 +94,25 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  void _incrementCounter(){
+
+  }
+
+  void _agregarAspirante(){
+
+  }
+
+  void _sincronizar(){
+
+  }
+
+  void _noSincronizados(){
+
+  }
+
+  void _cerrarSesion(){
+
+  }
+
 }
