@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyect/models/FormCard.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Proyecto Final'),
+      home: MyHomePage(title: 'Login'),
     );
   }
 }
@@ -35,62 +36,41 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer:  Drawer(
-        child: ListView(
+      
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 18
+        ),
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-              UserAccountsDrawerHeader(
-                currentAccountPicture: CircleAvatar(
-                  child: Icon(Icons.person, color: Colors.white, size: 50.0),
-                ),
-                accountName: Text('John Doe'),
-                accountEmail: Text('contact@example.com'),
+            Row(
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Padding(padding: EdgeInsets.all(16),),
+                Center(
+                  child: Image.asset("assets/ipn-logo.png")
+                )
+              ],
+            ),
+            FormCard(),
+            Center(
+              child: RaisedButton(
+                child: Text('Ingresar'),
+                textColor: Colors.white,
+                color: Colors.blue,
+                onPressed: (){},
               ),
-
-              ListTile(
-                title: Text('Agregar aspirante'),
-                leading: Icon(Icons.favorite, color: Colors.grey,),
-                onTap: (){
-               
-                _agregarAspirante();
-                }
-                               
-                 
-              ),
-              ListTile(
-                title: Text('Sincronizar'),
-                leading: Icon(Icons.bookmark, color: Colors.grey,),
-                onTap: (){
-               
-                _sincronizar();
-                }
-              ),
-
-              ListTile(
-                title: Text('No sincronizados'),
-                leading: Icon(Icons.camera_alt, color: Colors.grey,),
-               onTap: (){
-               
-                _noSincronizados();
-                }
-              ),
-
-              ListTile(
-                title: Text('Cerrar sesión'),
-                leading: Icon(Icons.map, color: Colors.grey,),
-                onTap: (){
-               
-                _cerrarSesion();
-                }
-              ),
+            )
+            
           ],
-          ),
-      ),
-      body: Center(
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Text("Soy nuevo"),
+        
+        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
