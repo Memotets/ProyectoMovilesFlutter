@@ -6,6 +6,7 @@ import 'package:proyect/models/Usuario.dart';
 import 'package:proyect/registro.dart';
 import 'models/Usuario.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -53,14 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Row(
-              //crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Padding(padding: EdgeInsets.all(16),),
-                Center(
+            Center(
                   child: Image.asset("assets/ipn-logo.png")
-                )
-              ],
             ),
             login.build(context),
             Center(
@@ -112,7 +107,6 @@ class _MyHomePageState extends State<MyHomePage> {
     
   }
   void agregarAspirante()async{
-
 	  final route = MaterialPageRoute(
 		   builder: (context) => Registro(this.base));
 	  Navigator.push(context, route);

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:proyect/Base.dart';
+import 'package:proyect/main.dart';
+import 'package:proyect/registro.dart';
 
 void main() => runApp(Menu());
 
 class Menu extends StatelessWidget {
   // This widget is the root of your application.
+  Base base;
+  Menu({Key key, Base base}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,13 +18,14 @@ class Menu extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Proyecto Final'),
+      home: MyHomePage(title: 'Proyecto Final',base: base, ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  Base base;
+  MyHomePage({Key key, this.title, Base base}) : super(key: key);
 
   final String title;
 
@@ -27,7 +34,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  Base base;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Icon(Icons.favorite, color: Colors.grey,),
                 onTap: (){
                
-                _agregarAspirante();
+                _agregarAspirante(context);
                 }
                                
                  
@@ -78,8 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text('Cerrar sesión'),
                 leading: Icon(Icons.map, color: Colors.grey,),
                 onTap: (){
-               
-                _cerrarSesion();
+                _cerrarSesion(context);
                 }
               ),
           ],
@@ -99,7 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  void _agregarAspirante(){
+  void _agregarAspirante(BuildContext context){
+    final route = MaterialPageRoute(
+		   builder: (context) => Registro(this.base));
+	  Navigator.push(context, route);
 
   }
 
@@ -111,7 +121,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  void _cerrarSesion(){
+  void _cerrarSesion(BuildContext context){
+    final route = MaterialPageRoute(
+		   builder: (context) => MyApp());
+    Navigator.pop(context);
+	  Navigator.push(context, route);
+    
 
   }
 
