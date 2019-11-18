@@ -1,3 +1,4 @@
+import 'package:proyect/models/Aspirante.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
@@ -19,12 +20,13 @@ class Base{
 		//Uniendo el ruta + nombre_de_la_base_de_datos
 		var dataBase = await openDatabase(
 			 rutaCompleta,
-			 version: 101,
+			 version: 102,
 			 onOpen: (db){},
 			 onCreate: (db,version){
 				 //Solo se ejecuta la primera vez
 				 //o cuando la versión cambie de
-				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, contra TEXT)");
+				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, contra TEXT); "
+					  "(CREATE TABLE Aspirante(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, aPaterno TEXT, aMaterno TEXT, edad INTEGER, sexo INTEGER, correo TEXT, telefono NUMERIC, procedencia TEXT, primerO INTEGER, segundaO INTEGER, tercerO INTEGER, fecha NUMERIC); ");
 			 }
 		);
 		return dataBase;
@@ -78,6 +80,39 @@ class Base{
 		return null;
 	}
 
+	//agregar aspirante
+	Future<int> addAspirante (Aspirante a)async{
+		var db = await base;
+
+		var result = await db.insert("Aspirante", a.toJson());
+
+		return result;
+	}
+
+	//eliminar aspirante
+	Future<int> deleteAspirante(int id) async {
+		final db = await base;
+
+		var res = db.delete("Aspirante", where: "id = ?", whereArgs: [id]);
+
+		return res;
+	}
+
+	//Listar - visualizar
+	Future<List> getAspirante() async {
+		final db = await base;
+		var res = await db.rawQuery('SELECT * FROM Aspirante');
+		return res.toList();
+	}
+
+	//Actualizara por ID
+	Future<int> updateAspirante(Aspirante a, int i) async {
+		final db = await base;
+
+		var res = await db.update("Aspirante", a.toJson(), where: "id = ?", whereArgs: [i]);
+
+		return res;
+	}
 
 //ACTUALIZAR
 }

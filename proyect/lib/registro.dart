@@ -56,8 +56,9 @@ class _RegistroState extends State<Registro> {
 							 TextFormField(
 								 controller: passwordCtrl,
 								 keyboardType: TextInputType.text,
-								 decoration: new InputDecoration(labelText: "Contrase�a"),
-								 validator: (val)=> val.length == 0 ? "Ingresa la contrase�a":null,
+								 decoration: new InputDecoration(labelText: "Contraseña"),
+								 validator: (val)=> val.length == 0 ? "Ingresa la contraseña":null,
+								 obscureText: true,
 								 onChanged: (str){
 									 this.pass= str;
 									 print(str);
@@ -66,7 +67,8 @@ class _RegistroState extends State<Registro> {
 							 TextFormField(
 								 controller: repeatPassCtrl,
 								 keyboardType: TextInputType.text,
-								 decoration: new InputDecoration(labelText: "Repetir contrase�a"),
+								 decoration: new InputDecoration(labelText: "Repetir contraseña"),
+								 obscureText: true,
 								 onChanged: (str){
 								 	this.repeatpass=str;
 								 },
