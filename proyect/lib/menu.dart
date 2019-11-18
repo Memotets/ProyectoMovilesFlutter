@@ -114,15 +114,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _sincronizar(){
-   final route = MaterialPageRoute(
-		   builder: (context) => Sincronizar(this.base));
-	  Navigator.push(context, route);
+//   final route = MaterialPageRoute(
+//		   builder: (context) => Sincronizar(this.base));
+//	  Navigator.push(context, route);
   }
 
   void _noSincronizados(){
-    final route = MaterialPageRoute(
-		   builder: (context) => NoSincronizados(this.base));
-	  Navigator.push(context, route);
+//    final route = MaterialPageRoute(
+//		   builder: (context) => NoSincronizados(this.base));
+//	  Navigator.push(context, route);
   }
 
   void _cerrarSesion(BuildContext context){
