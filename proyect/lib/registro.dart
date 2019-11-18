@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/Usuario.dart';
 import 'Base.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Registro extends StatefulWidget {
 	Base base;
@@ -90,27 +91,35 @@ class _RegistroState extends State<Registro> {
 		);
 	}
 	void submitUsuario()async{
+    String mensaje = "";
 		if(pass != repeatpass){
-			print("Las contrase�as no coinciden") ;
+      mensaje = "Las contraseñas no coinciden";
+			//print("Las contrase�as no coinciden") ;
 		}else{
-			print("Las contrase�as coinciden") ;
+			//print("Las contrase�as coinciden") ;
 			var base = new Base();
 			Usuario u = await base.getUser(name);
 			if(u != null){
-				print("El usuario ya existe");
-				print(name);
-				print(pass);
+        mensaje = "El usuario ya existe";
+				//print("El usuario ya existe");
+				//print(name);
+				//print(pass);
 			}else{
-				print("El usuario no existe");
+        
+				//print("El usuario no existe");
 				Usuario user = new Usuario();
 				user.usuario=name;
 				user.password=pass;
-				print(name);
-				print(pass);
+				//print(name);
+				//print(pass);
 				int a = await base.insertaUsuario(user);
-				print(a);
+				//print(a);
+        mensaje = "Usuario agregado";
 			}
 		}
+    Fluttertoast.showToast(
+      msg: mensaje
+    );
 	}
 }
 
