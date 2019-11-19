@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyect/Base.dart';
 import 'package:proyect/main.dart';
-import 'package:proyect/registro.dart';
+import 'registroAspirante.dart';
 
 void main() => runApp(Menu());
 
@@ -108,21 +108,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _agregarAspirante(BuildContext context){
     final route = MaterialPageRoute(
-		   builder: (context) => Registro(this.base));
+		   builder: (context) => registroAspirante(this.base));
 	  Navigator.push(context, route);
 
   }
 
   void _sincronizar(){
-//   final route = MaterialPageRoute(
-//		   builder: (context) => Sincronizar(this.base));
-//	  Navigator.push(context, route);
+
   }
 
   void _noSincronizados(){
-//    final route = MaterialPageRoute(
-//		   builder: (context) => NoSincronizados(this.base));
-//	  Navigator.push(context, route);
+
   }
 
   void _cerrarSesion(BuildContext context){

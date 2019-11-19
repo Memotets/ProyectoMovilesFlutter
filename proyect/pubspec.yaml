@@ -27,7 +27,7 @@ dependencies:
   path_provider: ^1.4.0
   flutter_screenutil: ^0.5.3
   fluttertoast: any
-
+  intl: ^0.16.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
