@@ -115,9 +115,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void pantalla(BuildContext context){
 	  final route = MaterialPageRoute(
 		   builder: (context) => Menu());
-	  Navigator.push(context, route);
+	  Navigator.pushReplacement(context, route);
   }
-
-  
-
 }
