@@ -26,9 +26,9 @@ class Aspirante{
 		"correo": this.correo,
 		"telefono": this.telefono,
 		"procedencia": this.procedencia,
-		"primerO": this.primerO,
-		"segundaO": this.segundaO,
-		"tercer0": this.tercerO,
+		"priO": this.primerO,
+		"segO": this.segundaO,
+		"terO": this.tercerO,
 		"fecha": this.fecha
 	};
 
@@ -41,9 +41,9 @@ class Aspirante{
 		 correo:data["correo"],
 		 telefono:data["telefono"],
 		 procedencia:data["procedencia"],
-		 primerO:data["primerO"],
-		 segundaO:data["segundaO"],
-		 tercerO:data["tercerO"],
+		 primerO:data["priO"],
+		 segundaO:data["segO"],
+		 tercerO:data["terO"],
 		 fecha:data["fecha"]
 	);
 

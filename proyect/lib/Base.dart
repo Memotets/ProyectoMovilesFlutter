@@ -20,13 +20,13 @@ class Base{
 		//Uniendo el ruta + nombre_de_la_base_de_datos
 		var dataBase = await openDatabase(
 			 rutaCompleta,
-			 version: 102,
+			 version: 105,
 			 onOpen: (db){},
 			 onCreate: (db,version){
 				 //Solo se ejecuta la primera vez
 				 //o cuando la versión cambie de
-				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, contra TEXT); "
-					  "(CREATE TABLE Aspirante(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, aPaterno TEXT, aMaterno TEXT, edad TEXT, sexo TEXT, correo TEXT, telefono TEXT, procedencia TEXT, primerO TEXT, segundaO TEXT, tercerO TEXT, fecha TEXT); ");
+				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, contra TEXT); ");
+				 db.execute("CREATE TABLE Aspirante(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, aPaterno TEXT, aMaterno TEXT, edad TEXT, sexo TEXT, correo TEXT, telefono TEXT, procedencia TEXT, priO TEXT, segO TEXT, terO TEXT, fecha TEXT); ");
 			 }
 		);
 		return dataBase;
@@ -83,7 +83,7 @@ class Base{
 	//agregar aspirante
 	Future<int> addAspirante (Aspirante a)async{
 		var db = await base;
-
+		print(a.toJson());
 		var result = await db.insert("Aspirante", a.toJson());
 
 		return result;
