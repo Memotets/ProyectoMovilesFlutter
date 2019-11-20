@@ -124,10 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _cerrarSesion(BuildContext context){
     final route = MaterialPageRoute(
 		   builder: (context) => MyApp());
-    Navigator.pop(context);
-	  Navigator.push(context, route);
-    
-
+	  Navigator.pushReplacement(context, route);
   }
 
 }
