@@ -2,15 +2,15 @@ class Aspirante{
 	String nombre;
 	String aPaterno;
 	String aMaterno;
-	int edad;
-	int sexo;
+	String edad;
+	String sexo;
 	String correo;
-	var telefono;
+	String telefono;
 	String procedencia;
-	int primerO;
-	int segundaO;
-	int tercerO;
-	var fecha;
+	String primerO;
+	String segundaO;
+	String tercerO;
+	String fecha;
 
 
 	Aspirante({this.nombre, this.aPaterno, this.aMaterno,this.edad, this.sexo, this.correo,

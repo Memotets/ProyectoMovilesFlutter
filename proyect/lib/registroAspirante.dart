@@ -1,90 +1,38 @@
-
 import 'package:flutter/material.dart';
+import 'package:proyect/models/Aspirante.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'Base.dart';
-import 'package:intl/intl.dart';
 
 class registroAspirante extends StatefulWidget{
-  Base base;
-	registroAspirante(Base base) {
-		this.base = base;
-	}
+   Base base;
+	registroAspirante(Base base) {this.base = base;}
+ 
   @override
   State<StatefulWidget> createState() => new RegistroState();
 }
 
 class RegistroState extends State<registroAspirante>{
-  String pn, sn, pa, sa, email, s,o;
-  int age, phone;
-  List genero =["Masculino", "Femenino", "Otrx"];
-  List opciones =["Sistemas computacionales","Ambiental","Mecatrónica","Alimentos","Metalúrgica"];
-  List<DropdownMenuItem<String>> _dropDownMenuItems;
-  List<DropdownMenuItem<String>> _dropDownMenuItemsOpc;
-  //List<DropdownMenuItem<String>> getDropDownMenuItems();
- // List<DropdownMenuItem<String>> items = new List();
-  DateTime selected;
-  time() async {
-   selected = await showDatePicker(
-     context: context,
-
-    initialDate: new DateTime.now(),
-    firstDate: new DateTime(1990),
-    lastDate: new DateTime(2050),
-   );
-   setState(() {
-     
-   });
- }
-
-  List<DropdownMenuItem<String>> getDropDownMenuItems() {
-    List<DropdownMenuItem<String>> items = new List();
-    for (String gen in genero) {
-      items.add(new DropdownMenuItem(
-          value: gen,
-          child: new Text(gen)
-      ));
-    }
-    return items;
-  }
-  List<DropdownMenuItem<String>> getDropDownMenuItemsOpciones() {
-    List<DropdownMenuItem<String>> items = new List();
-    for (String opc in opciones) {
-      items.add(new DropdownMenuItem(
-          value: opc,
-          child: new Text(opc)
-      ));
-    }
-    return items;
-  }
-
-
-  final scaffoldKey = new GlobalKey<ScaffoldState>();
+  final apellidodos =TextEditingController();
+  final apellidouno =TextEditingController();
+  final correo =TextEditingController();
+  final edad =TextEditingController();
+  final nombre =TextEditingController();
+  final sexo =TextEditingController();
+  final telefono =TextEditingController();
+  //Base base;  
+  var pn, pa, sa,age,phone, email ,s, o,oo,ooo,unoopc,dosopc,tresopc,sex;
+   
   final formKey = new GlobalKey<FormState>();
-  
-  @override
-  
-
-
-  void initState() {
-    
-    _dropDownMenuItems = getDropDownMenuItems();
-    s = _dropDownMenuItems[0].value;
-    _dropDownMenuItemsOpc = getDropDownMenuItemsOpciones();
-    o = _dropDownMenuItemsOpc[0].value;
-    super.initState();
-  }
+  final scaffoldKey = new GlobalKey<ScaffoldState>();
  
-
   Widget build(BuildContext context){
-    
-
     return Scaffold(
         key: scaffoldKey,
       appBar: new AppBar(
         title: Text('Registrar aspirante'),
         actions: <Widget>[
         ],
-      ),
-      
+      ),   
         body: new Card (
          child: new Padding(
         padding: const EdgeInsets.all(16),
@@ -93,8 +41,8 @@ class RegistroState extends State<registroAspirante>{
           child: new SingleChildScrollView(child: Column(children: <Widget>[
             SizedBox(height: 10.0),
             TextFormField(
-              keyboardType: TextInputType.text,
-              
+              controller: nombre,
+              keyboardType: TextInputType.text,             
               decoration: new InputDecoration(
                 labelText: "Primer nombre",
                 hintText: 'Ingresar nombre',
@@ -106,22 +54,12 @@ class RegistroState extends State<registroAspirante>{
               validator: (val)=> val.length == 0 ? "Ingresa tu primer nombre":null,
               onChanged: (str){
 								 	this.pn= str;
-								 },
-            ),
-             SizedBox(height: 15.0),
-            TextFormField(
-              keyboardType: TextInputType.text,
-              
-              decoration: new InputDecoration(labelText: "Segundo nombre",
-               contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
-              validator: (val)=> val.length == 0 ? "Ingresa tu segundo nombre":null,
-              onChanged: (str){
-								 	this.sn= str;
+                   print(str);
 								 },
             ),
             SizedBox(height: 15.0),
             TextFormField(
+              controller: apellidouno,
               keyboardType: TextInputType.text,
               decoration: new InputDecoration(labelText: "Primer apellido",
               contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
@@ -135,6 +73,7 @@ class RegistroState extends State<registroAspirante>{
             ),
             SizedBox(height: 15.0),
             TextFormField(
+              controller: apellidodos,
               keyboardType: TextInputType.text,
               decoration: new InputDecoration(labelText: "Segundo apellido",
               contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
@@ -148,7 +87,8 @@ class RegistroState extends State<registroAspirante>{
             ),
             SizedBox(height: 15.0),
             TextFormField(
-              keyboardType: TextInputType.text,
+              controller: edad,
+              keyboardType: TextInputType.number,
               decoration: new InputDecoration(labelText: "Edad",
               contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -156,27 +96,33 @@ class RegistroState extends State<registroAspirante>{
                 fillColor: Colors.grey[70],),
               validator: (val)=> val.length == 0 ? "Ingresa tu edad":null,
               onChanged: (str){
-								 	this.age= str as int;
+								 	this.age= str;
 								 },
             ),
             SizedBox(height: 15.0),
            DropdownButtonFormField(
-
-                   decoration: new InputDecoration(
-                labelText: "Sexo",
-                
+                decoration: new InputDecoration(
+                labelText: "Sexo",              
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
                 fillColor: Colors.grey[70],
               ),
                   value: s,
-                  items: _dropDownMenuItems,
-                  onChanged: changedDropDownItem,
+                  items:  ["Masculino","Femenino","Otr@"].map((label)=> DropdownMenuItem(
+              child: Text(label.toString()),
+              value: label)).toList(),
+                 onChanged: (value){
+                    setState(() {
+                this.s = value;
+                this.sex=value;
+              });
+                  },
             ),
              SizedBox(height: 15.0),
             TextFormField(
-              keyboardType: TextInputType.text,
+              controller: correo,
+              keyboardType: TextInputType.emailAddress,
               decoration: new InputDecoration(labelText: "Correo",
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
@@ -188,7 +134,7 @@ class RegistroState extends State<registroAspirante>{
             ),
              SizedBox(height: 15.0),
             TextFormField(
-              
+              controller: telefono,             
               keyboardType: TextInputType.phone,
               decoration: new InputDecoration(labelText: "Telefono",
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -196,102 +142,64 @@ class RegistroState extends State<registroAspirante>{
                 fillColor: Colors.grey[70],),
               validator: (val)=> val.length == 0 ? "Ingresa tu telefono":null,
               onChanged: (str){
-								 	this.phone= str as int;
-								 },
-              
+								 	this.phone= str;       
+								 },              
             ),
-             SizedBox(height: 15.0),
-            
-            DropdownButtonFormField(
-               decoration: new InputDecoration(
-                labelText: "Primera opcion",
-                
+             SizedBox(height: 15.0),          
+            DropdownButtonFormField<String>(              
+                decoration: new InputDecoration(
+                labelText: "Primera opcion",               
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
                 fillColor: Colors.grey[70],
-              ),
+                ),
                 value: o,
-                items: _dropDownMenuItemsOpc,
-                onChanged: changedDropDownItemOpc,
+                items:  ["Sistemas computacionales","Ambiental","Mecatrónica","Alimentos","Metalúrgica"].map((label)=> DropdownMenuItem(
+              child: Text(label.toString()),
+              value: label)).toList(),
+                onChanged: (value){
+                    setState(() {
+                this.unoopc = value;
+                this.o=value;
+              });
+                  },
             ),
              SizedBox(height: 15.0),
-            DropdownButtonFormField(
+            DropdownButtonFormField<String>(
                 decoration: new InputDecoration(labelText: "Segunda opción",
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
-                fillColor: Colors.grey[70],),
-               
-                value: o,
-                items: _dropDownMenuItemsOpc,
-                onChanged: changedDropDownItemOpc,
+                fillColor: Colors.grey[70],),       
+                value: oo,
+                items: ["Sistemas computacionales","Ambiental","Mecatrónica","Alimentos","Metalúrgica"].map((label)=> DropdownMenuItem(
+              child: Text(label.toString()),
+              value: label)).toList(),
+                onChanged: (value){
+                    setState(() {
+                this.dosopc = value;
+                this.oo=value;
+              });
+                  },
             ),
              SizedBox(height: 15.0),
-              
-             
-
-
-            DropdownButtonFormField(
+            DropdownButtonFormField<String>(
               decoration: new InputDecoration(labelText: "Tercera opción",
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                filled: true,
-                fillColor: Colors.grey[70],),
-                value: o,
-                items: _dropDownMenuItemsOpc,
-                onChanged: changedDropDownItemOpc,
+              filled: true,
+              fillColor: Colors.grey[70],),
+              value: ooo,
+              items:  ["Sistemas computacionales","Ambiental","Mecatrónica","Alimentos","Metalúrgica"].map((label)=> DropdownMenuItem(
+              child: Text(label.toString()),
+              value: label)).toList(),
+             onChanged: (value){
+                    setState(() {
+                this.tresopc = value;
+                this.ooo=value;
+              });
+                  },
             ),
              SizedBox(height: 15.0),
-            Card(
-              
-              color: Colors.grey[100],
-                  shape: RoundedRectangleBorder(
-	
-      borderRadius: BorderRadius.circular(10.0),
-	
-    ),
-              child: ListTile(
-              
-              title: Text('Fecha'),
-              subtitle: selected != null ? new Text(new DateFormat('yyyy-MMM-dd').format(selected))
-              : Text(''),
-                leading: new IconButton(
-              
-              icon: new Icon(
-                Icons.date_range,
-                size: 35,
-              ), 
-            
-              onPressed: ()=> time(),
-            ),
-
-            ),),
-           
-              
-              SizedBox(height: 15.0),
-             
-             
-           
-              /*TextFormField(
-                
-              readOnly: true,
-              enabled: false,
-
-              keyboardType: TextInputType.phone,
-              decoration: new InputDecoration(
-                alignLabelWithHint: true,
-               
-               
-                
-                labelText:  selected != null ? new DateFormat('yyyy-MMM-dd').format(selected): '',
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                filled: true,
-                fillColor: Colors.grey[70],),
-             
-              
-            )
-             , */
-              
-            
             new Container(
               margin: const EdgeInsets.only(top: 10),
               child: new RaisedButton(
@@ -308,22 +216,51 @@ class RegistroState extends State<registroAspirante>{
     );
   }
 
-   void submitAspirante(){
-    }
+   void submitAspirante()async{
+     String mensaje="";
+     DateTime now = new DateTime.now();
+     DateTime date = new DateTime(now.year, now.month, now.day);
+     String fech=date.toString();
 
-  void changedDropDownItem(String selectedGen) {
-    setState(() {
-      s = selectedGen;
-    });
-  }
-  void changedDropDownItemOpc(String selectedOpc) {
-    setState(() {
-      o = selectedOpc;
-    });
-  }
+     if(nombre.text.length >2 && apellidouno.text.length>2 
+     && edad.text.length > 1 && telefono.text.length==10 
+     && correo.text.length>1){
+       if(o!=oo && ooo!=o && ooo!=oo){
+          Aspirante asp =new Aspirante();
+          var base = new Base();
+          asp.nombre=pn;
+          asp.aPaterno=pa;
+          asp.aMaterno=sa;
+          asp.edad=age;
+          asp.sexo=sex;
+          asp.correo=email;
+          asp.telefono=phone;
+          asp.procedencia="";
+          asp.primerO=unoopc;
+          asp.segundaO=dosopc;
+          asp.tercerO=tresopc;
+          asp.fecha=fech;
+          int a = await base.addAspirante(asp);
+          mensaje="Aspirante agregado";
+       }else{
+         mensaje="Revisa tus opciones de carrera";
+       }
 
+     }else{
+       mensaje="Faltan datos, revisa tu información";
+     }
+    Fluttertoast.showToast(
+      msg: mensaje
+    );
 
+}
 
-  }
-  
-  
+  /*String fechear(DateTime d){
+     String y = d.;
+      String y = _fourDigits(year);
+    String m = _twoDigits(month);
+    String d = _twoDigits(day);
+    return
+  }*/
+
+}

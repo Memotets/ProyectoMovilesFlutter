@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyect/Base.dart';
 import 'package:proyect/main.dart';
-import 'registroAspirante.dart';
+import 'package:proyect/registroAspirante.dart';
 
 void main() => runApp(Menu());
 
