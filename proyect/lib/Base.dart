@@ -108,6 +108,12 @@ class Base{
 		return res.toList();
 	}
 
+  Future<List> getEscuelas() async{
+    final db = await base;
+    var res = await db.rawQuery('SELECT nombre FROM escuela');
+    return res.toList();
+  }
+
 	//Actualizara por ID
 	Future<int> updateAspirante(Aspirante a, int i) async {
 		final db = await base;
