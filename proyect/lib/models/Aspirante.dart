@@ -11,11 +11,13 @@ class Aspirante{
 	String segundaO;
 	String tercerO;
 	String fecha;
+	String procede;
+	String mensaje;
 
 
 	Aspirante({this.nombre, this.aPaterno, this.aMaterno,this.edad, this.sexo, this.correo,
 		 this.telefono, this.procedencia, this.primerO, this.segundaO,
-		 this.tercerO, this.fecha});
+		 this.tercerO, this.fecha, this.procede, this.mensaje});
 
 	Map<String, dynamic> toJson()=>{
 		"nombre": this.nombre,
@@ -29,7 +31,9 @@ class Aspirante{
 		"priO": this.primerO,
 		"segO": this.segundaO,
 		"terO": this.tercerO,
-		"fecha": this.fecha
+		"fecha": this.fecha,
+		"procede": this.procede,
+		"mensaje": this.mensaje
 	};
 
 	factory Aspirante.fromJson(Map<String, dynamic> data)=> Aspirante(
@@ -44,7 +48,9 @@ class Aspirante{
 		 primerO:data["priO"],
 		 segundaO:data["segO"],
 		 tercerO:data["terO"],
-		 fecha:data["fecha"]
+		 fecha:data["fecha"],
+		 procede: data["procede"],
+		 mensaje: data["mensaje"]
 	);
 
 }

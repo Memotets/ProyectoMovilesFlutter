@@ -26,7 +26,7 @@ class Base{
 				 //Solo se ejecuta la primera vez
 				 //o cuando la versión cambie de
 				 db.execute("CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, contra TEXT); ");
-				 db.execute("CREATE TABLE Aspirante(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, aPaterno TEXT, aMaterno TEXT, edad TEXT, sexo TEXT, correo TEXT, telefono TEXT, procedencia TEXT, priO TEXT, segO TEXT, terO TEXT, fecha TEXT); ");
+				 db.execute("CREATE TABLE Aspirante(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, aPaterno TEXT, aMaterno TEXT, edad TEXT, sexo TEXT, correo TEXT, telefono TEXT, procedencia TEXT, priO TEXT, segO TEXT, terO TEXT, fecha TEXT, procede TEXT, mensaje TEXT); ");
 			 }
 		);
 		return dataBase;
