@@ -29,7 +29,7 @@ class MenuScreen extends StatelessWidget {
                   child: Icon(Icons.person, color: Colors.white, size: 50.0),
                 ),
                 accountName: Text(user),
-                accountEmail: Text(user+'@gmail.com'),
+                accountEmail: null,
               ),
 
               ListTile(
