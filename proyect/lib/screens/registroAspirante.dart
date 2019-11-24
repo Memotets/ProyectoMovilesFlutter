@@ -33,12 +33,12 @@ class RegistroState extends State<registroAspirante>{
         actions: <Widget>[
         ],
       ),   
-        body: new Card (
+        body: SingleChildScrollView (
          child: new Padding(
         padding: const EdgeInsets.all(16),
         child: new Form(
           key: formKey,
-          child: new SingleChildScrollView(child: Column(children: <Widget>[
+          child: new Container(child: Column(children: <Widget>[
             SizedBox(height: 10.0),
             TextFormField(
               controller: nombre,
