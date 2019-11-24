@@ -47,17 +47,33 @@ class _RegistroState extends State<Registro> {
 						 children: <Widget>[
 							 TextFormField(
 								 keyboardType: TextInputType.text,
-								 decoration: new InputDecoration(labelText: "Nombre"),
+								 decoration: new InputDecoration(labelText: "Nombre",prefixIcon: Icon(Icons.person,
+                 
+                 ),
+                 
+                contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                filled: true,
+                fillColor: Colors.grey[70],
+                 ), 
+                 
 								 validator: (val)=> val.length == 0 ? "Ingresa el nombre del nuevo usuario":null,
 								 onChanged: (str){
 								 	this.name= str;
 								 	print(str);
 								 },
 							 ),
+                SizedBox(height: 15.0),
 							 TextFormField(
 								 controller: passwordCtrl,
 								 keyboardType: TextInputType.text,
-								 decoration: new InputDecoration(labelText: "Contraseña"),
+								 decoration: new InputDecoration(labelText: "Contraseña",prefixIcon: Icon(Icons.lock),
+                 
+                contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                filled: true,
+                fillColor: Colors.grey[70],
+                 ),
 								 validator: (val)=> val.length == 0 ? "Ingresa la contraseña":null,
 								 obscureText: true,
 								 onChanged: (str){
@@ -65,10 +81,17 @@ class _RegistroState extends State<Registro> {
 									 print(str);
 								 },
 							 ),
+                SizedBox(height: 15.0),
 							 TextFormField(
 								 controller: repeatPassCtrl,
 								 keyboardType: TextInputType.text,
-								 decoration: new InputDecoration(labelText: "Repetir contraseña"),
+								 decoration: new InputDecoration(labelText: "Repetir contraseña",prefixIcon: Icon(Icons.lock),
+                 
+                contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                filled: true,
+                fillColor: Colors.grey[70],
+                 ),
 								 obscureText: true,
 								 onChanged: (str){
 								 	this.repeatpass=str;

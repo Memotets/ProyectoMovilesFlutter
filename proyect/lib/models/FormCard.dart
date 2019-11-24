@@ -13,8 +13,15 @@ class FormCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text('Usuario'),
+         SizedBox(height: 10.0),
         TextField(
           decoration: InputDecoration(
+            prefixIcon: Icon(Icons.person,),
+             contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                filled: true,
+                
+                fillColor: Colors.grey[70],
             hintText: "Usuario" 
           ),
           controller: _userController,
@@ -25,9 +32,15 @@ class FormCard extends StatelessWidget {
         ),
         Divider(),
         Text('Contraseña'),
+        SizedBox(height: 10.0),
         TextField(
           obscureText: true,
           decoration: InputDecoration(
+             contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                filled: true,
+                prefixIcon: Icon(Icons.lock,),
+                fillColor: Colors.grey[70],
             hintText: "Contraseña"
           ),
           controller: _pwController,
