@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'models/Usuario.dart';
-import 'Base.dart';
+import 'package:proyect/models/Usuario.dart';
+import 'package:proyect/models/Base.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Registro extends StatefulWidget {

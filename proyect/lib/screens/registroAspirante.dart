@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proyect/models/Aspirante.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'Base.dart';
+import 'package:proyect/models/Base.dart';
+import 'package:proyect/models/Aspirante.dart';
 
 class registroAspirante extends StatefulWidget{
    Base base;

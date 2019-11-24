@@ -4,7 +4,6 @@ class FormCard extends StatelessWidget {
   String pw;
   final _userController = TextEditingController();
   final _pwController = TextEditingController();
-  
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -47,32 +46,3 @@ class FormCard extends StatelessWidget {
   
   }
 }
-/*
-Card FormCard(){
-  return Card(
-    child: Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text('Usuario'),
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Usuario" 
-          ),
-        ),
-        Divider(),
-        Text('Contraseña'),
-        TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-            hintText: "Contraseña"
-          ),
-
-        )
-      ],
-    ),
-    )
-  );
-}
-*/

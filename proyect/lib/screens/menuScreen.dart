@@ -1,47 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:proyect/Base.dart';
-import 'package:proyect/main.dart';
-import 'package:proyect/registroAspirante.dart';
+import 'package:proyect/app/app.dart';
+import 'package:proyect/models/Base.dart';
+import 'package:proyect/screens/registroAspirante.dart';
 
-void main() => runApp(Menu());
+class MenuScreen extends StatelessWidget {
+  final String user;
+  final Base base;
+  const MenuScreen({Key key, this.user, this.base}): super(key:key);
 
-class Menu extends StatelessWidget {
-  // This widget is the root of your application.
-  Base base;
-  Menu({Key key, Base base}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Proyecto Final',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Proyecto Final',base: base, ),
+  static Route<dynamic> route (String user){
+    return MaterialPageRoute(
+      builder: (context)=> MenuScreen(user: user)
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  Base base;
-  MyHomePage({Key key, this.title, Base base}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  Base base;
   
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Menu'),
       ),
       drawer:  Drawer(
         child: ListView(
@@ -50,8 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 currentAccountPicture: CircleAvatar(
                   child: Icon(Icons.person, color: Colors.white, size: 50.0),
                 ),
-                accountName: Text('John Doe'),
-                accountEmail: Text('contact@example.com'),
+                accountName: Text(user),
+                accountEmail: Text(user+'@gmail.com'),
               ),
 
               ListTile(
@@ -95,17 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Text("Soy nuevo"),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: Icon(Icons.info),
+        onPressed: (){},
+      ),
     );
   }
-
-  void _incrementCounter(){
-
-  }
-
+  
   void _agregarAspirante(BuildContext context){
     final route = MaterialPageRoute(
 		   builder: (context) => registroAspirante(this.base));
@@ -113,17 +86,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  void _sincronizar(){
+  void _sincronizar(){  }
 
-  }
-
-  void _noSincronizados(){
-
-  }
+  void _noSincronizados(){  }
 
   void _cerrarSesion(BuildContext context){
     final route = MaterialPageRoute(
-		   builder: (context) => MyApp());
+		   builder: (context) => MiApp());
 	  Navigator.pushReplacement(context, route);
   }
 
