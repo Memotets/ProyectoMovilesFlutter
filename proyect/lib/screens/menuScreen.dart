@@ -26,7 +26,8 @@ class MenuScreen extends StatelessWidget {
           children: <Widget>[
               UserAccountsDrawerHeader(
                 currentAccountPicture: CircleAvatar(
-                  child: Icon(Icons.person, color: Colors.white, size: 50.0),
+                  backgroundImage: NetworkImage('https://mr.travelbymexico.com/imgBase/2018/02/ipn1-compressor.jpg',
+                  ),
                 ),
                 accountName: Text(user),
                 accountEmail: null,
@@ -71,6 +72,7 @@ class MenuScreen extends StatelessWidget {
           ),
       ),
       body: Center(
+        child: Image.network('http://diariobasta.com/wp-content/uploads/2019/02/ipn.jpg')
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.info),
@@ -97,3 +99,4 @@ class MenuScreen extends StatelessWidget {
   }
 
 }
+
