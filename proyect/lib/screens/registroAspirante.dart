@@ -44,6 +44,9 @@ class RegistroState extends State<registroAspirante>{
               controller: nombre,
               keyboardType: TextInputType.text,             
               decoration: new InputDecoration(
+                 enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                 labelText: "Primer nombre",
                 hintText: 'Ingresar nombre',
                 prefixIcon: Icon(Icons.person),
@@ -60,9 +63,13 @@ class RegistroState extends State<registroAspirante>{
             ),
             SizedBox(height: 15.0),
             TextFormField(
+              
               controller: apellidouno,
               keyboardType: TextInputType.text,
               decoration: new InputDecoration(labelText: "Primer apellido", prefixIcon: Icon(Icons.person),
+               enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
               contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
@@ -78,6 +85,9 @@ class RegistroState extends State<registroAspirante>{
               controller: apellidodos,
               keyboardType: TextInputType.text,
               decoration: new InputDecoration(labelText: "Segundo apellido", prefixIcon: Icon(Icons.person),
+               enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
               contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
@@ -92,6 +102,9 @@ class RegistroState extends State<registroAspirante>{
               controller: edad,
               keyboardType: TextInputType.number,
               decoration: new InputDecoration(labelText: "Edad",prefixIcon: Icon(Icons.calendar_today),
+               enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
               contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
@@ -104,6 +117,9 @@ class RegistroState extends State<registroAspirante>{
             SizedBox(height: 15.0),
            DropdownButtonFormField(
                 decoration: new InputDecoration(
+                   enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                   prefixIcon: Icon(Icons.wc),
                 labelText: "Sexo",              
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
@@ -127,6 +143,9 @@ class RegistroState extends State<registroAspirante>{
               controller: correo,
               keyboardType: TextInputType.emailAddress,
               decoration: new InputDecoration(labelText: "Correo", prefixIcon: Icon(Icons.email),
+               enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
                 fillColor: Colors.grey[70],),
@@ -141,6 +160,9 @@ class RegistroState extends State<registroAspirante>{
               keyboardType: TextInputType.phone,
               decoration: new InputDecoration(labelText: "Telefono", prefixIcon: Icon(Icons.phone),
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+               enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                 filled: true,
                 fillColor: Colors.grey[70],),
               validator: (val)=> val.length == 0 ? "Ingresa tu telefono":null,
@@ -151,6 +173,9 @@ class RegistroState extends State<registroAspirante>{
              SizedBox(height: 15.0),          
             DropdownButtonFormField<String>(              
                 decoration: new InputDecoration(
+                   enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                 labelText: "Primera opcion",    
                 prefixIcon: Icon(Icons.bookmark_border),           
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
@@ -173,6 +198,9 @@ class RegistroState extends State<registroAspirante>{
             DropdownButtonFormField<String>(
                 decoration: new InputDecoration(labelText: "Segunda opción", prefixIcon: Icon(Icons.bookmark_border),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                 enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                 filled: true,
                 fillColor: Colors.grey[70],),       
                 value: oo,
@@ -190,6 +218,9 @@ class RegistroState extends State<registroAspirante>{
             DropdownButtonFormField<String>(
               decoration: new InputDecoration(labelText: "Tercera opción", prefixIcon: Icon(Icons.bookmark_border),
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+               enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
               filled: true,
               fillColor: Colors.grey[70],),
               value: ooo,

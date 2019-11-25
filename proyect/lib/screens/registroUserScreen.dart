@@ -46,10 +46,14 @@ class _RegistroState extends State<Registro> {
 					 child: new Column(
 						 children: <Widget>[
 							 TextFormField(
+                 controller: namae,
 								 keyboardType: TextInputType.text,
 								 decoration: new InputDecoration(labelText: "Nombre",prefixIcon: Icon(Icons.person,
                  
                  ),
+                  enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                  
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -71,6 +75,9 @@ class _RegistroState extends State<Registro> {
                  
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                 enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                 filled: true,
                 fillColor: Colors.grey[70],
                  ),
@@ -89,6 +96,9 @@ class _RegistroState extends State<Registro> {
                  
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                 enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                 filled: true,
                 fillColor: Colors.grey[70],
                  ),
@@ -132,34 +142,36 @@ class _RegistroState extends State<Registro> {
 	}
 	void submitUsuario()async{
     String mensaje = "";
+    if(namae.text.length==0 || passwordCtrl.text.length==0 || repeatPassCtrl.text.length==0){
+      mensaje = "Rellena los campos";
+    }else{
 		if(pass != repeatpass){
       mensaje = "Las contraseñas no coinciden";
-			//print("Las contrase�as no coinciden") ;
+			
 		}else{
-			//print("Las contrase�as coinciden") ;
+		
 			var base = new Base();
 			Usuario u = await base.getUser(name);
 			if(u != null){
         mensaje = "El usuario ya existe";
-				//print("El usuario ya existe");
-				//print(name);
-				//print(pass);
+				
 			}else{
         
-				//print("El usuario no existe");
+				
 				Usuario user = new Usuario();
 				user.usuario=name;
 				user.password=pass;
-				//print(name);
-				//print(pass);
+			
 				int a = await base.insertaUsuario(user);
-				//print(a);
+				
         mensaje = "Usuario agregado";
 			}
 		}
-    Fluttertoast.showToast(
+    
+	}
+  Fluttertoast.showToast(
       msg: mensaje
     );
-	}
+  }
 }
 

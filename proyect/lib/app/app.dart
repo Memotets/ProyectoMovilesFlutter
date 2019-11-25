@@ -11,6 +11,7 @@ class MiApp extends StatelessWidget {
           accentColor:  Color.fromARGB(450, 107, 23, 64),
          bottomAppBarColor: Color.fromARGB(450, 107, 23, 64),
          buttonColor: Color.fromARGB(450, 107, 23, 64),
+         
        appBarTheme:  AppBarTheme(
         
          color: Color.fromARGB(450, 107, 23, 64)

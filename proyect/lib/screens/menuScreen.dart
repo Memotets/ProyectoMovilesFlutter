@@ -31,8 +31,7 @@ class MenuScreen extends StatelessWidget {
                   color:  Color.fromARGB(450, 107, 23, 64)
                 ),
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage('https://mr.travelbymexico.com/imgBase/2018/02/ipn1-compressor.jpg',
-                  ),
+                  backgroundImage:  AssetImage("assets/ipn2.jpg"),// NetworkImage('https://mr.travelbymexico.com/imgBase/2018/02/ipn1-compressor.jpg',),
                 ),
                 accountName: Text(user),
                 accountEmail: null,
@@ -77,7 +76,7 @@ class MenuScreen extends StatelessWidget {
           ),
       ),
       body: Center(
-        child: Image.network('http://diariobasta.com/wp-content/uploads/2019/02/ipn.jpg')
+        child: Image.asset("assets/ipn.jpg",),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.info),
