@@ -13,12 +13,13 @@ class Aspirante{
 	String fecha;
 	String procede;
 	String mensaje;
-
+  
 
 	Aspirante({this.nombre, this.aPaterno, this.aMaterno,this.edad, this.sexo, this.correo,
 		 this.telefono, this.procedencia, this.primerO, this.segundaO,
 		 this.tercerO, this.fecha, this.procede, this.mensaje});
 
+  
 	Map<String, dynamic> toJson()=>{
 		"nombre": this.nombre,
 		"aPaterno": this.aPaterno,

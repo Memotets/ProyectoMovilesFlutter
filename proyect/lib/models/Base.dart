@@ -107,7 +107,7 @@ class Base{
 		var res = await db.rawQuery('SELECT * FROM Aspirante');
 		return res.toList();
 	}
-
+  
   Future<List> getEscuelas() async{
     final db = await base;
     var res = await db.rawQuery('SELECT nombre FROM escuela');

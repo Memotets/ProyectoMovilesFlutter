@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proyect/app/app.dart';
 import 'package:proyect/models/Base.dart';
 import 'package:proyect/screens/registroAspirante.dart';
+import 'package:proyect/screens/sincronizarScreen.dart';
 
 class MenuScreen extends StatelessWidget {
   final String user;
@@ -52,7 +53,7 @@ class MenuScreen extends StatelessWidget {
                 leading: Icon(Icons.bookmark, color: Colors.grey,),
                 onTap: (){
                
-                _sincronizar();
+                _sincronizar(context);
                 }
               ),
 
@@ -92,7 +93,11 @@ class MenuScreen extends StatelessWidget {
 
   }
 
-  void _sincronizar(){  }
+  void _sincronizar(BuildContext context){ 
+    final route = MaterialPageRoute(
+		   builder: (context) => SyncScreen(base));
+	  Navigator.push(context, route);
+   }
 
   void _noSincronizados(){  }
 
