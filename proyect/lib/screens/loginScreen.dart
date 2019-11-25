@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
           borderRadius: BorderRadius.circular(20.0),
           color: Color.fromARGB(450, 107, 23, 64),
           child: MaterialButton(
-            
+
             minWidth: MediaQuery.of(context).size.width,
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             onPressed: (){
@@ -64,6 +64,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
           ),
         ),
+         SizedBox(height: 20.0),
+          Padding( padding: const EdgeInsets.all(16.0), 
+          child: Align( alignment: Alignment.centerRight, 
+          child: new FloatingActionButton( 
+             onPressed:()=>agregarAspirante(),    
+            child: new Icon( Icons.add, color: Colors.white, ), ), ), ),
             /*  Center(
                 child: RaisedButton(
                   child: Text('Ingresar'),
@@ -79,11 +85,11 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-      floatingActionButton: FloatingActionButton(
-
+   /*   floatingActionButton: FloatingActionButton(
+          
         onPressed:()=>agregarAspirante(),    
         child: Icon(Icons.add),
-      ), 
+      ), */
 
     );
   
