@@ -28,10 +28,9 @@ class MenuScreen extends StatelessWidget {
               UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
                   color:  Color.fromARGB(450, 107, 23, 64)
-
                 ),
                 currentAccountPicture: CircleAvatar(
-                  child: Image.asset("assets/ipn2.jpg",),
+                  backgroundImage:  AssetImage("assets/ipn2.jpg"),// NetworkImage('https://mr.travelbymexico.com/imgBase/2018/02/ipn1-compressor.jpg',),
                 ),
                 accountName: Text(user),
                 accountEmail: null,
