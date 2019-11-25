@@ -203,15 +203,29 @@ class RegistroState extends State<registroAspirante>{
               });
                   },
             ),
-             SizedBox(height: 15.0),
-            new Container(
+             SizedBox(height: 18.0),
+             Material(
+          elevation: 5.0,
+          borderRadius: BorderRadius.circular(20.0),
+          color: Color.fromARGB(450, 107, 23, 64),
+          child: MaterialButton(
+            minWidth: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+             onPressed: submitAspirante,
+            child: Text('Agregar aspirante',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+                ),
+          ),
+        ),
+           /* new Container(
               margin: const EdgeInsets.only(top: 10),
               child: new RaisedButton(
                 color: Colors.teal[200],
                 onPressed: submitAspirante,
                 child: Text('Agregar aspirante'),
               ),
-            )
+            )*/
           ]),
         ),
         )

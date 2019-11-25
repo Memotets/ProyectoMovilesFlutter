@@ -97,7 +97,24 @@ class _RegistroState extends State<Registro> {
 								 	this.repeatpass=str;
 								 },
 							 ),
-							 new Container(
+               SizedBox(height: 18.0),
+                Material(
+          elevation: 5.0,
+          borderRadius: BorderRadius.circular(20.0),
+          color: Color.fromARGB(450, 107, 23, 64),
+          child: MaterialButton(
+            minWidth: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            onPressed: (){
+										 submitUsuario();
+									 },
+            child: Text("Agregar Usuario",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+                ),
+          ),
+        ),
+							/* new Container(
 								 margin: const EdgeInsets.only(top: 10),
 								 child: new RaisedButton(
 									 color: Colors.blue,
@@ -106,7 +123,7 @@ class _RegistroState extends State<Registro> {
 									 },
 									 child: Text('Agregar Usuario'),
 								 ),
-							 )
+							 )*/
 						 ],
 					 ),
 				 )

@@ -33,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text('Login'),
       ),
       body: SingleChildScrollView(
+          
           padding: EdgeInsets.symmetric(
             vertical: 10,
             horizontal: 18
@@ -44,7 +45,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Image.asset("assets/ipn-logo.png")
               ),
               _login.build(context),
-              Center(
+             SizedBox(height: 15.0),
+              Material(
+          elevation: 5.0,
+          borderRadius: BorderRadius.circular(20.0),
+          color: Color.fromARGB(450, 107, 23, 64),
+          child: MaterialButton(
+            minWidth: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            onPressed: (){
+                    print(_login.user);
+                    print(_login.pw);
+                    validarLogin(context,_login.user,_login.pw);},
+            child: Text("Ingresar",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+                ),
+          ),
+        ),
+            /*  Center(
                 child: RaisedButton(
                   child: Text('Ingresar'),
                   textColor: Colors.white,
@@ -54,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     print(_login.pw);
                     validarLogin(context,_login.user,_login.pw);},
                 ),
-              )
+              )*/
               
             ],
           ),

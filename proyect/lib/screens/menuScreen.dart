@@ -22,9 +22,13 @@ class MenuScreen extends StatelessWidget {
         title: Text('Menu'),
       ),
       drawer:  Drawer(
+        
         child: ListView(
           children: <Widget>[
               UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color:  Color.fromARGB(450, 107, 23, 64)
+                ),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage('https://mr.travelbymexico.com/imgBase/2018/02/ipn1-compressor.jpg',
                   ),
