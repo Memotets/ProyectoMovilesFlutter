@@ -50,6 +50,9 @@ class _RegistroState extends State<Registro> {
 								 decoration: new InputDecoration(labelText: "Nombre",prefixIcon: Icon(Icons.person,
                  
                  ),
+                  enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                  
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -71,6 +74,9 @@ class _RegistroState extends State<Registro> {
                  
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                 enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                 filled: true,
                 fillColor: Colors.grey[70],
                  ),
@@ -89,6 +95,9 @@ class _RegistroState extends State<Registro> {
                  
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                 enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
                 filled: true,
                 fillColor: Colors.grey[70],
                  ),

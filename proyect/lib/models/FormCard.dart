@@ -16,6 +16,9 @@ class FormCard extends StatelessWidget {
          SizedBox(height: 10.0),
         TextField(
           decoration: InputDecoration(
+             enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
             prefixIcon: Icon(Icons.person,),
              contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -36,6 +39,10 @@ class FormCard extends StatelessWidget {
         TextField(
           obscureText: true,
           decoration: InputDecoration(
+            
+             enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64),), ),
+                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(450, 107, 23, 64))),
              contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 15),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
