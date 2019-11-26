@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:proyect/models/Aspirante.dart';
 import 'package:proyect/models/Base.dart';
-//import 'dart:convert';
-
+import 'package:proyect/screens/nosyncScreen.dart';
 
 class SyncScreen extends StatefulWidget {
   Base base;
@@ -16,6 +18,8 @@ class _SyncScreenState extends State<SyncScreen> {
   Base base;
  
   List<DataRow> registros=[];
+  List<Aspirante> aspirantes=[];
+  List<Aspirante> nosync=[];
   
   _SyncScreenState(Base base){this.base = base;}
   @override
@@ -31,25 +35,36 @@ class _SyncScreenState extends State<SyncScreen> {
           child: FutureBuilder(
             future: base.getAspirante(),
             builder: (context,snapshot){
-              if(snapshot.hasData){
-                List<Aspirante> aspirantes=[];
-              for (var item in snapshot.data){ 
-                Aspirante aux= new Aspirante.fromJson(item);
-                aspirantes.add(aux);    
-              }
-              for (var a in aspirantes) {
-              DataRow dataRow = new DataRow(
-              cells: [
-                DataCell(Center(child: Icon(Icons.sync),)),
-                DataCell(Text(a.nombre+' '+a.aPaterno+' '+a.aMaterno)),
-                DataCell(Text(a.telefono)),
-                DataCell(Text(a.correo)),
-                DataCell(Text(a.fecha)),
-              ]
-              );
-              registros.add(dataRow);
-              }
-              return tabla();
+              if(snapshot.hasData){   
+                aspirantes.clear();
+                registros.clear();             
+                for (var item in snapshot.data){ 
+                  Aspirante aux= new Aspirante.fromJson(item);
+                  aspirantes.add(aux);    
+                }
+                for (var a in aspirantes) {
+                  DataRow dataRow = new DataRow(
+                    cells: [
+                      DataCell(
+                        Center(
+                          child: IconButton(
+                            onPressed: (){
+                              print('No deberia estar aqui');
+                              sincronizarAspirante(a);
+                            },
+                            icon: Icon(Icons.sync),
+                          )
+                        )
+                      ),
+                      DataCell(Text('${a.nombre} ${a.aPaterno} ${a.aMaterno}')),
+                      DataCell(Text(a.telefono)),
+                      DataCell(Text(a.correo)),
+                      DataCell(Text(a.fecha)),
+                    ]
+                  );
+                  registros.add(dataRow);
+                }
+                return tabla();
               }else if(snapshot.hasError){
                 return Text("Upss..");
               }
@@ -59,39 +74,47 @@ class _SyncScreenState extends State<SyncScreen> {
       ) ,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          setState(() {
-           // llenarRegistros();
-          });
-        },
+        onPressed: ()=> sincronizarTabla(),         
         child: Icon(Icons.sync),
       ),
     );
   }
-  /*
-  void llenarRegistros() async{  
-    List<Aspirante> aspirantes=[];
-    var snapshot = await base.getAspirante();
 
-    for (var item in snapshot){ 
-      Aspirante aux= new Aspirante.fromJson(item);
-      aspirantes.add(aux);    
+  void sincronizarAspirante(Aspirante asp) async{
+    String apilink = 'http://sistemas.upiiz.ipn.mx/isc/sira/api/actionAddAspiranteApp.php';
+    apilink+='?nombre=${asp.nombre}&email=${asp.correo}&movil=${asp.telefono}&accion=agregar';
+    var resAPI = await http.get(apilink);
+    if (resAPI.statusCode == 200) {
+      var status = json.decode(resAPI.body);
+      print(status);
+      if (status["estado"]== 1) {
+        base.deleteAspirante(aspirantes.indexOf(asp)+1);
+        print('Deberia borrar, pero no borro');
+      }
+  
+      else{
+        int i = aspirantes.indexOf(asp);
+        aspirantes[i].mensaje=status["mensaje"];
+      }
+        
     }
-    for (var a in aspirantes) {
-      DataRow dataRow = new DataRow(
-        cells: [
-          DataCell(Text(a.nombre+' '+a.aPaterno+' '+a.aMaterno)),
-          DataCell(Text(a.telefono)),
-          DataCell(Text(a.correo)),
-          DataCell(Text(a.fecha)),
-        ]
-      );
-      registros.add(dataRow);
-    }
-    
-
+    else{
+       throw Exception('Error: ${resAPI.statusCode}');
+     }
   }
-  */
+
+  void sincronizarTabla(){
+    for (var item in aspirantes) 
+      sincronizarAspirante(item);
+    toNoSyncScreen();
+  }
+
+  void toNoSyncScreen(){
+    final route = MaterialPageRoute(
+		   builder: (context) => NoSyncScreen());
+	  Navigator.push(context, route);
+  }
+
   Widget tabla(){
     return DataTable(
           columns: [
