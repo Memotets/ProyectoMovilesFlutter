@@ -39,14 +39,21 @@ class _LoginScreenState extends State<LoginScreen> {
             horizontal: 18
           ),
           child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.center,
+         
             children: <Widget>[
               Center(
                     child: Image.asset("assets/ipn-logo.png")
               ),
               _login.build(context),
              SizedBox(height: 15.0),
-              Material(
+             new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20.0, right: 5.0, top: 10.0),
+                    child: Material(
           elevation: 5.0,
           borderRadius: BorderRadius.circular(20.0),
           color: Color.fromARGB(450, 107, 23, 64),
@@ -64,39 +71,57 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
           ),
         ),
-         SizedBox(height: 20.0),
-          Padding( padding: const EdgeInsets.all(16.0), 
-          child: Align( alignment: Alignment.centerRight, 
-          child: new FloatingActionButton( 
-             onPressed:()=>agregarAspirante(),    
-            child: new Icon( Icons.add, color: Colors.white, ), ), ), ),
-            /*  Center(
-                child: RaisedButton(
-                  child: Text('Ingresar'),
-                  textColor: Colors.white,
-                  color: Colors.blue,
-                  onPressed: (){
-                    print(_login.user);
-                    print(_login.pw);
-                    validarLogin(context,_login.user,_login.pw);},
+                  ),
                 ),
-              )*/
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0, right: 20.0, top: 10.0),
+                      child: Material(
+                        elevation: 5.0,
+                        borderRadius: BorderRadius.circular(20.0),
+                        color: Color.fromARGB(450, 107, 23, 64),
+                        child: MaterialButton(
+                          minWidth: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                          onPressed:()=>agregarAspirante(), 
+                            child: Text("Registrar",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white),
+                ),
+          ),
+        ),
+                  ),
+                )
+               
+              ],
+            ),
+            
               
             ],
           ),
         ),
-   /*   floatingActionButton: FloatingActionButton(
-          
-        onPressed:()=>agregarAspirante(),    
-        child: Icon(Icons.add),
-      ), */
-
     );
   
   }
   void validarLogin(BuildContext context,String user, String password ) async{
     Usuario usuario = await _base.getLogin(user, password);
     var alertDialog = AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(5.0))),
+     
+      actions: <Widget>[
+          FlatButton(
+            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            color: Color.fromARGB(450, 107, 23, 64),
+            shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            child: Text('Ok',style: TextStyle(color: Colors.white),),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
       title: Text("Error al ingresar"),
       content: Text("Verificar usuario y/o contraseña"),
     );
