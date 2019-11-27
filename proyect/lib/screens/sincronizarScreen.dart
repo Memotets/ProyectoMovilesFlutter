@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:proyect/models/Aspirante.dart';
@@ -48,10 +48,7 @@ class _SyncScreenState extends State<SyncScreen> {
                       DataCell(
                         Center(
                           child: IconButton(
-                            onPressed: (){
-                              print('No deberia estar aqui');
-                              sincronizarAspirante(a);
-                            },
+                            onPressed: ()=>sincronizarAspirante(a, false),
                             icon: Icon(Icons.sync),
                           )
                         )
@@ -80,7 +77,7 @@ class _SyncScreenState extends State<SyncScreen> {
     );
   }
 
-  void sincronizarAspirante(Aspirante asp) async{
+  void sincronizarAspirante(Aspirante asp, bool all) async{
     String apilink = 'http://sistemas.upiiz.ipn.mx/isc/sira/api/actionAddAspiranteApp.php';
     apilink+='?nombre=${asp.nombre}&email=${asp.correo}&movil=${asp.telefono}&accion=agregar';
     var resAPI = await http.get(apilink);
@@ -88,24 +85,30 @@ class _SyncScreenState extends State<SyncScreen> {
       var status = json.decode(resAPI.body);
       print(status);
       if (status["estado"]== 1) {
-        base.deleteAspirante(aspirantes.indexOf(asp)+1);
-        print('Deberia borrar, pero no borro');
+        aspirantes.remove(asp);
+        base.deleteAspirante(asp.id);
       }
   
       else{
         int i = aspirantes.indexOf(asp);
         aspirantes[i].mensaje=status["mensaje"];
+        base.updateAspirante(asp,asp.id);
       }
-        
+
+      if(!all)
+        Fluttertoast.showToast(
+          msg: status["mensaje"]
+        ); 
     }
     else{
        throw Exception('Error: ${resAPI.statusCode}');
      }
+     setState((){});
   }
 
   void sincronizarTabla(){
     for (var item in aspirantes) 
-      sincronizarAspirante(item);
+      sincronizarAspirante(item,true);
     toNoSyncScreen();
   }
 

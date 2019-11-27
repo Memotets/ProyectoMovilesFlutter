@@ -11,13 +11,13 @@ class Aspirante{
 	String segundaO;
 	String tercerO;
 	String fecha;
-	String procede;
 	String mensaje;
+  int id;
   
 
 	Aspirante({this.nombre, this.aPaterno, this.aMaterno,this.edad, this.sexo, this.correo,
 		 this.telefono, this.procedencia, this.primerO, this.segundaO,
-		 this.tercerO, this.fecha, this.procede, this.mensaje});
+		 this.tercerO, this.fecha, this.mensaje,this.id});
 
   
 	Map<String, dynamic> toJson()=>{
@@ -33,8 +33,8 @@ class Aspirante{
 		"segO": this.segundaO,
 		"terO": this.tercerO,
 		"fecha": this.fecha,
-		"procede": this.procede,
-		"mensaje": this.mensaje
+		"mensaje": this.mensaje,
+    "id": this.id
 	};
 
 	factory Aspirante.fromJson(Map<String, dynamic> data)=> Aspirante(
@@ -50,8 +50,8 @@ class Aspirante{
 		 segundaO:data["segO"],
 		 tercerO:data["terO"],
 		 fecha:data["fecha"],
-		 procede: data["procede"],
-		 mensaje: data["mensaje"]
+		 mensaje: data["mensaje"],
+     id: data["id"]
 	);
 
 }
