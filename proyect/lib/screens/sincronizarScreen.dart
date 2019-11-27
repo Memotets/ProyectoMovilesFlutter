@@ -79,6 +79,7 @@ class _SyncScreenState extends State<SyncScreen> {
   }
 
   void sincronizarAspirante(Aspirante asp, bool all) async{
+    print('nombre: ${asp.nombre} id: ${asp.id}');
     String apilink = 'http://sistemas.upiiz.ipn.mx/isc/sira/api/actionAddAspiranteApp.php';
     apilink+='?nombre=${asp.nombre}&email=${asp.correo}&movil=${asp.telefono}&accion=agregar';
     var resAPI = await http.get(apilink);
@@ -87,8 +88,12 @@ class _SyncScreenState extends State<SyncScreen> {
       print(status);
       if (status["estado"]== 1) 
         base.deleteAspirante(asp.id);
-      else
+      else{
+        asp.mensaje=status["mensaje"];
         base.updateAspirante(asp,asp.id);
+
+      }
+        
       if(!all)
         Fluttertoast.showToast(
           msg: status["mensaje"]
@@ -97,7 +102,10 @@ class _SyncScreenState extends State<SyncScreen> {
     else{
        throw Exception('Error: ${resAPI.statusCode}');
      }
-     setState((){});
+     setState(() {
+       
+     });
+     
   }
 
   void sincronizarTabla(){

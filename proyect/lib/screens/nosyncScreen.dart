@@ -23,7 +23,7 @@ class _NoSyncScreenState extends State<NoSyncScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sincronizar Aspirantes'),
+        title: Text('Aspirantes no sincronizados'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
