@@ -320,7 +320,7 @@ class RegistroState extends State<registroAspirante>{
     Fluttertoast.showToast(
       msg: mensaje
     );
-
+    
 }
 
 
