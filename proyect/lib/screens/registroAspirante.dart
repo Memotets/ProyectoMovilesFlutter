@@ -306,7 +306,16 @@ class RegistroState extends State<registroAspirante>{
           print(fech);
           int a = await base.addAspirante(asp);
           mensaje="Aspirante agregado";
-          print(asp);
+          setState(() {
+            apellidodos.clear();
+            apellidouno.clear();
+            correo.clear();
+            edad.clear();
+            nombre.clear();
+            sexo.clear();
+            telefono.clear();
+            
+          });
        }   else{
          mensaje="Revisa tus opciones de carrera";
        }

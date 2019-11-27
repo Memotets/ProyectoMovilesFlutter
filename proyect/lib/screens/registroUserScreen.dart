@@ -161,14 +161,7 @@ class _RegistroState extends State<Registro> {
 				Usuario user = new Usuario();
 				user.usuario=name;
 				user.password=pass;
-			
 				int a = await base.insertaUsuario(user);
-        setState(){
-          namae.clear();
-	        passwordCtrl.clear();
-	        repeatPassCtrl.clear();
-        }
-        
         mensaje = "Usuario agregado";
 			}
 		}
