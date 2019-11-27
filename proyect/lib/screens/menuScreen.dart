@@ -3,6 +3,7 @@ import 'package:proyect/app/app.dart';
 import 'package:proyect/models/Base.dart';
 import 'package:proyect/screens/registroAspirante.dart';
 import 'package:proyect/screens/sincronizarScreen.dart';
+import 'package:proyect/screens/nosyncScreen.dart';
 
 class MenuScreen extends StatelessWidget {
   final String user;
@@ -61,7 +62,7 @@ class MenuScreen extends StatelessWidget {
                 leading: Icon(Icons.camera_alt, color: Colors.grey,),
                onTap: (){
                
-                _noSincronizados();
+                _noSincronizados(context);
                 }
               ),
 
@@ -98,7 +99,11 @@ class MenuScreen extends StatelessWidget {
 	  Navigator.push(context, route);
    }
 
-  void _noSincronizados(){  }
+  void _noSincronizados(BuildContext context){  
+    final route = MaterialPageRoute(
+		   builder: (context) => NoSyncScreen(base));
+	  Navigator.push(context, route);
+  }
 
   void _cerrarSesion(BuildContext context){
     final route = MaterialPageRoute(

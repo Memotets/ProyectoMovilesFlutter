@@ -19,7 +19,7 @@ class _SyncScreenState extends State<SyncScreen> {
  
   List<DataRow> registros=[];
   List<Aspirante> aspirantes=[];
-  List<Aspirante> nosync=[];
+  //List<Aspirante> nosync=[];
   
   _SyncScreenState(Base base){this.base = base;}
   @override
@@ -40,7 +40,8 @@ class _SyncScreenState extends State<SyncScreen> {
                 registros.clear();             
                 for (var item in snapshot.data){ 
                   Aspirante aux= new Aspirante.fromJson(item);
-                  aspirantes.add(aux);    
+                  if(aux.mensaje == null)
+                    aspirantes.add(aux);    
                 }
                 for (var a in aspirantes) {
                   DataRow dataRow = new DataRow(
@@ -84,17 +85,10 @@ class _SyncScreenState extends State<SyncScreen> {
     if (resAPI.statusCode == 200) {
       var status = json.decode(resAPI.body);
       print(status);
-      if (status["estado"]== 1) {
-        aspirantes.remove(asp);
+      if (status["estado"]== 1) 
         base.deleteAspirante(asp.id);
-      }
-  
-      else{
-        int i = aspirantes.indexOf(asp);
-        aspirantes[i].mensaje=status["mensaje"];
+      else
         base.updateAspirante(asp,asp.id);
-      }
-
       if(!all)
         Fluttertoast.showToast(
           msg: status["mensaje"]
@@ -114,7 +108,7 @@ class _SyncScreenState extends State<SyncScreen> {
 
   void toNoSyncScreen(){
     final route = MaterialPageRoute(
-		   builder: (context) => NoSyncScreen());
+		   builder: (context) => NoSyncScreen(base));
 	  Navigator.push(context, route);
   }
 
