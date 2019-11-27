@@ -111,7 +111,7 @@ class _SyncScreenState extends State<SyncScreen> {
   void sincronizarTabla(){
     for (var item in aspirantes) 
       sincronizarAspirante(item,true);
-    toNoSyncScreen();
+   // toNoSyncScreen();
   }
 
   void toNoSyncScreen(){
