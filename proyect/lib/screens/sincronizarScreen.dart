@@ -80,8 +80,9 @@ class _SyncScreenState extends State<SyncScreen> {
 
   void sincronizarAspirante(Aspirante asp, bool all) async{
     print('nombre: ${asp.nombre} id: ${asp.id}');
-    String apilink = 'http:/ /sistemas.upiiz.ipn.mx/isc/sira/api/actionAddAspiranteApp.php';
+    String apilink = 'http://sistemas.upiiz.ipn.mx/isc/sira/api/actionAddAspiranteApp.php';
     apilink+='?nombre=${asp.nombre}&email=${asp.correo}&movil=${asp.telefono}&accion=agregar';
+    print(apilink);
     var resAPI = await http.get(apilink);
     if (resAPI.statusCode == 200) {
       var status = json.decode(resAPI.body);
